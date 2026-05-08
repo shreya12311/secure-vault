@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .weak {
+            color: red;
+        }
+
+        .medium {
+            color: orange;
+        }
+
+        .strong {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Password Strength Checker🔐</h2>
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <br>
+
+        <button onclick="checkPassword()">Check Strength</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkPassword() {
+
+            let password = document.getElementById("password").value;
+
+            let result = document.getElementById("result");
+
+            let hasUpper = /[A-Z]/.test(password);
+            let hasLower = /[a-z]/.test(password);
+            let hasNumber = /[0-9]/.test(password);
+            let hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            if (password.length < 6) {
+                result.innerHTML = "Weak Password";
+                result.className = "weak";
+            }
+
+            else if (
+                password.length >= 8 &&
+                hasUpper &&
+                hasLower &&
+                hasNumber &&
+                hasSymbol
+            ) {
+                result.innerHTML = "Strong Password";
+                result.className = "strong";
+            }
+
+            else {
+                result.innerHTML = "Medium Password";
+                result.className = "medium";
+            }
+        }
+    </script>
+
+</body>
+</html>
